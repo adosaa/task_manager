@@ -1,0 +1,23 @@
+{
+    "development": {
+        "project_name": "task-manager",
+        "aws_region": "us-east-1",
+        "environment_variables": {
+            "ENVIRONMENT": "development"
+        },
+        "exclude": [
+            "boto3*",
+            "botocore*"
+        ],
+        "django_settings": "project.settings.development",
+        "runtime": "python3.11",
+        "s3_bucket": "zappa-rlxkiri5y",
+        "keep_warm": true,
+        "lambda_description": "aws:states:opt-out",
+        "timeout_seconds": 900,
+        "slim_handler": true,
+        "memory_size": 3008,
+        "manage_roles": false,
+        "delete_local_zip": true
+    }
+}
