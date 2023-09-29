@@ -8,34 +8,21 @@ A backend app for support Task management of multiple users and their requiremen
 * Coverage 89%
 * [OPTIONAL] serverless deployment in AWS Lambda with Zappa.
 
-
 ## Considerations
 
-1. In instructions, there is no guaranteed way to identify Students in a unique form (like a national DNI, local id etc.), therefore it's assumed that the name it's a unique field.
-2. It's assumed that a student can't be detected in more than one classroom on the same day and range time.
-3. In the input file, there is not specified  any kind of periodicity in terms of the PRESENCE records aka it's impossible to know which Thursday, for instance, of certain week is this record:
+1. The design of the system was thought of as "school wall information", that everyone can put and create tasks, change their status, and so on. Very Similar to Jira's scrum wall.
+2. In that order of ideas, we can assume the following sentences:
+    2.1 Unless for management, the read operations will rarely be made in terms of all the collection of Tasks. Mostly will be filtered in terms of the user who made the task and paginated by the way. Therefore, read operations will not give a huge overhead to consider a DB with high throughput in these necessities like MySQL or MongoDB. However, this does not mean that optimizations such as dynamically selecting only a subset of fields per resource not be a good idea to reduce overhead in each request (<https://github.com/dbrgn/drf-dynamic-fields>).
 
-        Presence Marco 4 09:02 10:17 R100
+    2.2 Quite the opposite, write operations made by multiples of users (and concurrent ) can be big trouble in terms of the scalability of the system. A DB capable of receiving concurrent requests in write operations like PostgreSQL, gives us robustness and scalability as long as we keep the filters and care in the reading operations.
 
-    So, it's impossible to know if the following border case is the student in two different Thursdays or a simple typing error.
+3. Overall, PostgreSQL will be the DB chosen for this project due to this good trade-off between robustness and scalability.
 
-        Presence Marco 4 09:02 10:17 R100
-        Presence Marco 4 09:02 10:17 R100
+4. By the above considerations, extra fields (as created_at), dynamically selecting fields (drf-dynamic-fields), and filters like search by "Task's user creator" (query param 'search') are necessary for good performance and read operations. The below entity-relationship model is the representation of the solution (more details in project/models):
 
-    In this fact, and keeping the concept of point 2, exists two easy paths:
+  ![Alt text](project/apps/task_manager/tests/resources/model.png?raw=true "entity-relationship-model")
 
-    3.1 Add periodicity in name of the input file. aka:
-        2020-03-10.txt
-
-    3.2 Assuming that all the days are distinct so in the previous example, these two records are two Thursdays of two differents weeks, so will be count.
-
-    It's assumed (for simplicity) the 3.2 point.
-
-4. The below entity-relationship model is the representation of the solution (more details in project/models):
-
-  ![Alt text](project/apps/task_manager_backend/tests/resources/erm.png?raw=true "entity-relationship-model")
-
-5. All the documentation is present in swagger (<http://127.0.0.1:8000/swagger/>). But also, all the worked endpoints for this test, are present in the file called: "task_manager.postman_collection.json", which is a Postman export file with all the endpoints used for the tests (in the root of the project).
+5. All the documentation is present in (<http://127.0.0.1:8000/docs/>). But also, all the worked endpoints for this test, are present in the file called: "TaskManager.postman_collection.json", which is a Postman export file with all the endpoints used for the tests (in the root of the project).
 
 ## Setup
 

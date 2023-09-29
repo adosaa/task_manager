@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "bd9f554d-df2a-4194-ac57-b695b31f7b36",
+		"_postman_id": "a99a44d3-21bd-42c8-9096-87ff22c9d9a1",
 		"name": "TaskManager",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "849367"
+		"_exporter_id": "13510786"
 	},
 	"item": [
 		{
@@ -151,12 +151,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "TMCIT {{token}}",
+						"value": "TMCIT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk2MDUyMjAzLCJpYXQiOjE2OTU5NjU4MDMsImp0aSI6ImFkYWU4NDA4NGJmYjRmOGZhN2UyZTZkN2I4NDliOGU2IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJmdmVyYSIsImlzX3N0YWZmIjp0cnVlLCJpc19zdWRvIjp0cnVlLCJlbWFpbCI6ImZ2ZXJhQGdtYWlsLmNvbSJ9.HUk8AfO1EsRFXL9CI9UHUqANJrzxQmpV1W1foFB-nlk",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/v1/task/",
+					"raw": "http://127.0.0.1:8000/api/v1/task/?fields=title,id&search=fvera",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -173,9 +173,12 @@
 					],
 					"query": [
 						{
-							"key": "",
-							"value": "",
-							"disabled": true
+							"key": "fields",
+							"value": "title,id"
+						},
+						{
+							"key": "search",
+							"value": "fvera"
 						}
 					]
 				}

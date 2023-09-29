@@ -11,12 +11,14 @@ __email__ = "adosaa@gmail.com"
 __copyright__ = "Copyright 2023, TaskManager."
 
 
+from drf_dynamic_fields import DynamicFieldsMixin
 from rest_framework import serializers
-from task_manager.models.task import Task
+
 from task_manager.enums import TaskEnum
+from task_manager.models.task import Task
 
 
-class TaskSerializer(serializers.ModelSerializer):
+class TaskSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     """
     Serializer class for UserProattached_file core Model.
 

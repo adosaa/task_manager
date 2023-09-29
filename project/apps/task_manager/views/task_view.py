@@ -50,7 +50,7 @@ class TaskView(viewsets.ModelViewSet):
         self.permission_classes = (IsAuthenticated,)
         self.ordering_fields = "__all__"
         self.filter_backends = (RestFrameworkFilterBackend, OrderingFilter, SearchFilter)
-        self.search_fields = "title"
+        self.search_fields = ["=created_by"]
         self.ordering = ("-created_at",)
 
     def retrieve(self, request, pk, *args, **kwargs):
