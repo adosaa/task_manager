@@ -14,14 +14,18 @@ from rest_framework.views import exception_handler
 
 
 def core_exception_handler(exc, context):
-    """_summary_
+    """
+    core_exception_handler method.
+
+    Handler which decores a common exception in APIException type format.
 
     Args:
-        exc (_type_): _description_
-        context (_type_): _description_
+        exc (Exception): Exception Python class.
+        context (dict): Serializer's View context.
 
     Returns:
-        _type_: _description_
+        response (APIException): A class composed of attributes like
+        status_code, default_detail, default_code and, message.
     """
     response = exception_handler(exc, context)
     if response is not None:

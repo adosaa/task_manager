@@ -28,14 +28,18 @@ class TaskView(viewsets.ModelViewSet):
     """
     TaskView View Class.
 
-    :@attr {Model Class} model_class - model class of the view
-    :@attr {queryset instance} queryset - general queryset from the model
-    :@attr {Serializer Class} serializer_class - serializer model of the view
-    :@attr {tuple} permission_classes - tuple with all general DRF permissions of the view
-    :@attr {Class} filter_class - sub class which filters record/collection of the Task entity
-        by their fields.
-    :@raises {None}
-    :@returns {None}
+    Principal class in charge of maintaining CRUD operations logic.
+
+    Attr:
+        model_class (Task): model class of the view.
+        queryset (Queryset instance): general queryset from the model.
+        serializer_class (TaskSerializer): serializer class of the view.
+        permission_classes (tuple): tuple with all general DRF permissions
+        of the view.
+        filter_backends (tuple): tuple with all general DRF filter classes
+        available for the view.
+        search_fields (list): fields for lookup.
+        ordering (tuple): fields that mark the collection's order by default.
     """
 
     def __init__(self):
@@ -48,23 +52,26 @@ class TaskView(viewsets.ModelViewSet):
         self.queryset = Task.objects.all()
         self.serializer_class = TaskSerializer
         self.permission_classes = (IsAuthenticated,)
-        self.ordering_fields = "__all__"
         self.filter_backends = (RestFrameworkFilterBackend, OrderingFilter, SearchFilter)
         self.search_fields = ["=created_by"]
         self.ordering = ("-created_at",)
 
     def retrieve(self, request, pk, *args, **kwargs):
         """
-        GET (retrive instance) method.
+        retrieve method (GET).
 
-        Using TaskView.get_object_with_params method for geting only
-        one Task instances.
+        EP representation used for getting only one Task instance.
 
-        :@params {tuple} request - HTTP request object from the frontend/user
-        side.
-        :@params {string} pk - Task instance ID to modify.
-        :@raises {APIException}
-        :@returns {Task instance} single record of Task model.
+        Args:
+            request (dict): HTTP request object from the frontend/user
+            side.
+            pk (str): Task instance ID.
+
+        Raises:
+            APIException: HTTP error in EP execution.
+
+        Returns:
+            Task (JSON representation): single record of Task model.
         """
         try:
             return super(viewsets.ModelViewSet, self).retrieve(request, *args, **kwargs)
@@ -73,11 +80,19 @@ class TaskView(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         """
-                GET (collection list) method.
-        COMPLETED
-                :@params {tuple} request - HTTP request object from the frontend/user side.
-                :@raises {APIException}
-                :@returns {Task} list of all Task instances.
+        list method (GET).
+
+        EP representation used for getting a Task collection.
+
+        Args:
+            request (dict): HTTP request object from the frontend/user
+            side.
+
+        Raises:
+            APIException: HTTP error in EP execution.
+
+        Returns:
+            Task List (list): set or subset of Task's collection.
         """
         try:
             return super(viewsets.ModelViewSet, self).list(request, *args, **kwargs)
@@ -86,11 +101,19 @@ class TaskView(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         """
-        POST (create instance) method.
+        create method (POST).
 
-        :@params {tuple} request - HTTP request object from the frontend/user side.
-        :@raises {APIException}
-        :@returns {Task} created Task instance.
+        EP representation used for creating a Task instance.
+
+        Args:
+            request (dict): HTTP request object from the frontend/user
+            side.
+
+        Raises:
+            APIException: HTTP error in EP execution.
+
+        Returns:
+            Task (JSON representation): created Task instance.
         """
         try:
             token_data = request.auth
@@ -106,12 +129,21 @@ class TaskView(viewsets.ModelViewSet):
 
     def partial_update(self, request, pk, *args, **kwargs):
         """
-        PATCH (edit instance) method.
+        partial_update method (PATCH).
 
-        :@params {tuple} request - HTTP request object from the frontend/user side.
-        :@params {String} pk - Task instance ID.
-        :@raises {APIException}
-        :@returns {Task} Edited Task instance.
+        EP representation used for editing certain parts of a
+        Task instance.
+
+        Args:
+            request (dict): HTTP request object from the frontend/user
+            side.
+            pk (str): Task instance ID.
+
+        Raises:
+            APIException: HTTP error in EP execution.
+
+        Returns:
+            Task (JSON representation): single record of edited Task.
         """
         try:
             task_instance = get_object_or_404(self.model_class, pk=pk)
@@ -125,12 +157,20 @@ class TaskView(viewsets.ModelViewSet):
 
     def delete(self, request, pk, *args, **kwargs):
         """
-        DELETE (edit instance) method.
+        delete method (DELETE).
 
-        :@params {tuple} request - HTTP request object from the frontend/user side.
-        :@params {String} pk - Task instance ID.
-        :@raises {APIException}
-        :@returns HTTP_204_NO_CONTENT
+        EP representation used for delete a Task instance.
+
+        Args:
+            request (dict): HTTP request object from the frontend/user
+            side.
+            pk (str): Task instance ID.
+
+        Raises:
+            APIException: HTTP error in EP execution.
+
+        Returns:
+            None (HTTP 204 status): HTTP signaling success in the operation.
         """
         try:
             return super(viewsets.ModelViewSet, self).destroy(request, *args, **kwargs)

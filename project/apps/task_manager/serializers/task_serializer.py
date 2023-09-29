@@ -20,7 +20,7 @@ from task_manager.models.task import Task
 
 class TaskSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     """
-    Serializer class for UserProattached_file core Model.
+    Serializer class for Task core Model.
 
     :@param {all} all - all the Task fields serialized.
     :@raises {None}
@@ -34,16 +34,24 @@ class TaskSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     status_str = serializers.SerializerMethodField(read_only=True)
 
     def validate_status(self, value):
-        """_summary_
+        """
+        validate_status method.
+
+        Validation method used to parse the value of the field "status"
+        previous to save it by serializer. The idea is to take wherever
+        value (integer part (0,1,2) or string part (PENDING, IN_PROGRESS,
+        COMPLETED)) presented in the request and parse it to a valid value.
+        Otherwise, returns an exception.
 
         Args:
-            value (_type_): _description_
+            value (str): value of status
 
         Raises:
-            serializers.ValidationError: _description_
+            serializers.ValidationError: not valid status message.
 
         Returns:
-            _type_: _description_
+            int: a valid value for status no matter the initial request
+            value.
         """
         status = value if value is not None else None
         is_status_valid = False
@@ -66,13 +74,16 @@ class TaskSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
             raise serializers.ValidationError("Not valid status")
 
     def get_status_str(self, obj):
-        """_summary_
+        """
+        get_status_str method.
+
+        A Simple getter method of the string part of the integer status.
 
         Args:
-            obj (_type_): _description_
+            obj (Task): Task instance.
 
         Returns:
-            _type_: _description_
+            str: the string part of the integer status.
         """
         status_str = str()
         try:

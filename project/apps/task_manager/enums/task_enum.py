@@ -15,16 +15,15 @@ class TaskEnum(object):
     """
     TaskEnum Class.
 
-    A class to save all possible kinds of Task instances.
+    A class to save all possible statuses of Task instances.
 
-    Which is composed only by attributes like:
-
-    :@attr {int} pending - unique integer id representing a task without beginning.
-    :@attr {int} in_progress - unique integer ID representing a task in the process
-    of being done.
-    :@attr {int} complete - unique integer id representing an finished task.
-    :@attr {dict} task_statuses - dictionary which group by all the previous task
-    states in one tuple.
+    Attr:
+        pending (int): unique integer id representing a task without beginning.
+        in_progress (int): unique integer ID representing a task in the process
+        of being done.
+        complete (int): unique integer id representing an finished task.
+        task_statuses (dict): dictionary which group by all the previous task
+        states in one tuple.
     """
 
     pending = 0

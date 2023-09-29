@@ -22,13 +22,19 @@ class BaseModel(models.Model):
 
     An abstract model with all the basic fields for each table in the system.
 
-    :@attr {UUID} id - unique identification for the instance/record.
-    :@attr {datetime} created_at - date and time of the record creation.
-    :@attr {datetime} updated_at - date and time of the record edition.
-    :@attr {string} created_by - string with the username which created the record.
-    :@attr {dict} extra_fields - an extra JSONField for non-migrations and expansion purposes.
-    :@attr {bool} is_active - state (inactive/active) of the record.
-    :@attr {bool} is_deleted - state (removed/Not-removed) of the record.
+    Attr:
+        id (str, UUID): unique identification for the instance/record.
+        created_at (datetime): date and time of the record creation.
+        updated_at (datetime): date and time of the record edition.
+        created_by (str): tring with the username which created the
+        record.
+        extra_fields (dict): an extra JSONField for non-migrations
+        and expansion purposes.
+        is_active (bool): state (inactive/active) of the record.
+        is_deleted (bool): state (removed/Not-removed) of the record.
+
+    Returns:
+        None: Only for inheritance purposes.
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

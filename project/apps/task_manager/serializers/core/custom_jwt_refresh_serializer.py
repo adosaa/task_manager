@@ -23,10 +23,6 @@ class CustomTokenRefreshSerializer(serializers.Serializer):
 
     An override of the refresh serializer method for simplejwt.
     Developed for working with only access token types.
-
-    :@attr {String} token - token input as string.
-    :@raises {TokenError}
-    :@returns {dict} - dictionary with access token as attr.
     """
 
     token = serializers.CharField()
@@ -34,11 +30,18 @@ class CustomTokenRefreshSerializer(serializers.Serializer):
     def validate(self, attrs):
         """
         validate method.
-        Checks if access token provided is valid and then issues a new token.
 
-        :@attr {dict} - view input payload.
-        :@raises {TokenError}
-        :@returns {dict} - dictionary with access token as attr.
+        Checks if access token provided is valid and then
+        issues a new token.
+
+        Args:
+            attrs (str): view input payload.
+
+        Raises:
+            Exception: TokenError.
+
+        Returns:
+            dict: dictionary with access token as attr.
         """
         token = AccessToken(attrs["token"])
         token.verify()

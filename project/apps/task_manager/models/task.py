@@ -17,21 +17,30 @@ from task_manager.models import BaseModel
 
 class Task(BaseModel):
     """
-    A model to store Core Task instances.
+    Task Model.
 
-    :@attr {UUID} id - unique identification for the instance/record (inherited from BaseModel).
-    :@attr {Boolean} is_active - state (inactive/active) of the record (inherited from BaseModel).
-    :@attr {bool} is_deleted - state (removed/Not-removed) of the record (inherited from BaseModel).
-    :@attr {string} created_by - string with the username which created the record
-        (inherited from BaseModel).
-    :@attr {datetime} created_at - date and time of the record creation (inherited from BaseModel).
-    :@attr {datetime} updated_at - date and time of the record edition (inherited from BaseModel).
-    :@attr {Dict} extra_fields - an extra JSONField for non-migrations and expansion purposes.
-    (inherited from BaseModel).
-    :@attr {EconomicCategory} economic_categories - ManyToMany EconomicCategory ForeignKey
-        reference.
-    :@attr {Dict} extra_fields - an extra JSONField for non-migrations and expansion purposes
-    (inherited from BaseModel).
+    A model to store Task instances.
+
+    Attr:
+        id (str, UUID): unique identification for the instance/record.
+        created_at (datetime): date and time of the record creation.
+        updated_at (datetime): date and time of the record edition.
+        created_by (str): tring with the username which created the
+        record.
+        extra_fields (dict): an extra JSONField for non-migrations
+        and expansion purposes.
+        is_active (bool): state (inactive/active) of the record.
+        is_deleted (bool): state (removed/Not-removed) of the record.
+
+        title (str): summary of a task.
+        description (str): detail of a task.
+        due_date (datetime.date): time mark when a task should be
+        finished or out of date.
+        status (int): possible options in which a task is present
+        currently. 
+
+    Returns:
+        Task: Task instance.
     """
 
     title = models.CharField(max_length=350, blank=False, null=False, default="")

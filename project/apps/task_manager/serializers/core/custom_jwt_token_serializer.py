@@ -16,18 +16,26 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class JWTTokenSerializer(TokenObtainPairSerializer):
     """
-    Serializer customization for JWT Token claims.
+    JWTTokenSerializer class.
 
-    :@param {User} User model instance.
-    :@raises {None}
-    :@returns {Token} - Updated token instance of corresponding token class.
+    Serializer customization for JWT Token claims.
     """
 
     @classmethod
     def get_token(cls, user):
         """
-        get_token method override.
+        get_token method.
+
         Used for assigning extra claims to token object.
+
+        Args:
+            user (User): User model instance.
+
+        Raises:
+            None
+
+        Returns:
+            dict: Updated token instance of corresponding token class.
         """
         token = super().get_token(user)
 

@@ -18,10 +18,6 @@ class AuthenticatedServiceClient:
     AuthenticatedServiceClient Class.
 
     This acts as a in-memory (partial) user object that is built from the token data.
-
-    :@param {dict} payload - info of the logged user from the token parsing mechanism.
-    :@raises {None}
-    :@returns {None}
     """
 
     def __init__(self, payload):
