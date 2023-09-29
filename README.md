@@ -1,6 +1,6 @@
 # TaskManager Backend
 
-A backend app that manages all student's presence detection as a hiring test. This proof of concept includes:
+A backend app that
 
 * JWT authentication mechanism.
 * Saving/Retrieving student's presence records and is able to generate reports of all student's presence in descending order.
