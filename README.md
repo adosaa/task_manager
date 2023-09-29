@@ -97,7 +97,7 @@ Once the setup & run step is done, it's recommended:
 
     1.1 Copy the token value presented in the Endpoint response.
 
-    ![Alt text](project/apps/task_manager/tests/resources/token.png?raw=true "token")
+![Alt text](project/apps/task_manager/tests/resources/token.png?raw=true "token")
 
 2.Paste the token value in the {{token}} placeholder in Header section of the first EP called "Create Task".
 
@@ -105,4 +105,12 @@ Once the setup & run step is done, it's recommended:
 
     2.1 After that, just click in send button to create a new Task.
 
-    ![Alt text](project/apps/task_manager/tests/resources/create_task.png?raw=true "create_task")
+![Alt text](project/apps/task_manager/tests/resources/create_task.png?raw=true "create_task")
+
+3. We can get all the previous tasks created with the EP called "Get Task Collection". Query param "field" is used to select only useful fields and reduce the payload charge times and "search" to lookup by username.
+
+![Alt text](project/apps/task_manager/tests/resources/collection.png?raw=true "collection")
+
+4. All the other EP (Get Instance Task, Edit Task, and Delete task) follow the same logic as the above. Just modify the UUID placeholder with the ID of the desired task to edit, get, or delete.
+
+![Alt text](project/apps/task_manager/tests/resources/uuid.png?raw=true "uuid")
