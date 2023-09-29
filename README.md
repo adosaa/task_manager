@@ -4,10 +4,8 @@ A backend app that manages all student's presence detection as a hiring test. Th
 
 * JWT authentication mechanism.
 * Saving/Retrieving student's presence records and is able to generate reports of all student's presence in descending order.
-* Swagger Doc (<http://127.0.0.1:8000/swagger/>)
-* ReDoc (<http://127.0.0.1:8000/redoc/>)
-* Django Rest Framework documentation (<http://127.0.0.1:8000/docs/>)
-* Coverage 81%
+* Documentation (<http://127.0.0.1:8000/docs/>)
+* Coverage 89%
 
 ## Considerations
 
@@ -33,15 +31,15 @@ A backend app that manages all student's presence detection as a hiring test. Th
 
 4. The below entity-relationship model is the representation of the solution (more details in project/models):
 
-  ![Alt text](project/apps/foris_backend/tests/resources/erm.png?raw=true "entity-relationship-model")
+  ![Alt text](project/apps/task_manager_backend/tests/resources/erm.png?raw=true "entity-relationship-model")
 
-5. All the documentation is present in swagger (<http://127.0.0.1:8000/swagger/>). But also, all the worked endpoints for this test, are present in the file called: "Foris.postman_collection.json", which is a Postman export file with all the endpoints used for the tests (in the root of the project).
+5. All the documentation is present in swagger (<http://127.0.0.1:8000/swagger/>). But also, all the worked endpoints for this test, are present in the file called: "task_manager.postman_collection.json", which is a Postman export file with all the endpoints used for the tests (in the root of the project).
 
 ## Setup
 
 1. Copy / clone repo from github.
 
-        git clone git@github.com:adosaa/foris_backend.git
+        git clone git@github.com:adosaa/task_manager_backend.git
 
 2. If you already have the repo, pull the latest version
 
@@ -50,8 +48,8 @@ A backend app that manages all student's presence detection as a hiring test. Th
 
 3. Create a virtualenv. Note: supporting Pyhton 3.8.
 
-        virtualenv -p python3.8 foris-env
-        source foris-env/bin/activate
+        virtualenv -p python3.8 task_manager-env
+        source task_manager-env/bin/activate
 
 4. Switch to the project root and install requirements.
 
@@ -95,10 +93,10 @@ A backend app that manages all student's presence detection as a hiring test. Th
 
 Once the setup & run step is done, it's recommended:
 
-1. execute POST endpoint <http://127.0.0.1:8000/api/v1/input_file/> with an election file (or pick some of one example in project/apps/foris_backend/tests/resources):
+1. execute POST endpoint <http://127.0.0.1:8000/api/v1/input_file/> with an election file (or pick some of one example in project/apps/task_manager_backend/tests/resources):
 
-![Alt text](project/apps/foris_backend/tests/resources/upload_input_file.png?raw=true "upload_file")
+![Alt text](project/apps/task_manager_backend/tests/resources/upload_input_file.png?raw=true "upload_file")
 
 2. 2. The user can explore for all the rest of the endpoints present in the documentation or in the postman export file, but for getting the exercise result, execute the GET endpoint <http://127.0.0.1:8000/api/v1/report/> as the below image:
 
-![Alt text](project/apps/foris_backend/tests/resources/report.png?raw=true "report")
+![Alt text](project/apps/task_manager_backend/tests/resources/report.png?raw=true "report")
