@@ -12,6 +12,7 @@ A backend app for support Task management of multiple users and their requiremen
 
 1. The design of the system was thought of as "school wall information", that everyone can put and create tasks, change their status, and so on. Very Similar to Jira's scrum wall.
 2. In that order of ideas, we can assume the following sentences:
+
     2.1 Unless for management, the read operations will rarely be made in terms of all the collection of Tasks. Mostly will be filtered in terms of the user who made the task and paginated by the way. Therefore, read operations will not give a huge overhead to consider a DB with high throughput in these necessities like MySQL or MongoDB. However, this does not mean that optimizations such as dynamically selecting only a subset of fields per resource not be a good idea to reduce overhead in each request (<https://github.com/dbrgn/drf-dynamic-fields>).
 
     2.2 Quite the opposite, write operations made by multiples of users (and concurrent ) can be big trouble in terms of the scalability of the system. A DB capable of receiving concurrent requests in write operations like PostgreSQL, gives us robustness and scalability as long as we keep the filters and care in the reading operations.
@@ -90,10 +91,18 @@ A backend app for support Task management of multiple users and their requiremen
 
 Once the setup & run step is done, it's recommended:
 
-1. execute POST endpoint <http://127.0.0.1:8000/auth/login/> and login with the credentials served in the step number 7 of setup:
+1.Execute POST endpoint <http://127.0.0.1:8000/auth/login/> and login with the credentials served in the step number 7 of setup:
 
-![Alt text](project/apps/task_manager/tests/resources/login.png?raw=true "upload_file")
+![Alt text](project/apps/task_manager/tests/resources/login.png?raw=true "login")
 
-2. 2. The user can explore for all the rest of the endpoints present in the documentation or in the postman export file, but for getting the exercise result, execute the GET endpoint <http://127.0.0.1:8000/api/v1/report/> as the below image:
+    1.1 Copy the token value presented in the Endpoint response.
 
-![Alt text](project/apps/task_manager_backend/tests/resources/report.png?raw=true "report")
+    ![Alt text](project/apps/task_manager/tests/resources/token.png?raw=true "token")
+
+2.Paste the token value in the {{token}} placeholder in Header section of the first EP called "Create Task".
+
+![Alt text](project/apps/task_manager/tests/resources/replaced_placeholder.png?raw=true "replaced_placeholder")
+
+    2.1 After that, just click in send button to create a new Task.
+
+    ![Alt text](project/apps/task_manager/tests/resources/create_task.png?raw=true "create_task")
