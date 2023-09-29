@@ -54,7 +54,7 @@ A backend app for support Task management of multiple users and their requiremen
         DB_ENGINE=django.db.backends.postgresql
         DB_NAME=<DB_NAME>
         DB_USER=postgres
-        DB_PASSWORD=<DB_NAME>
+        DB_PASSWORD=<DB_PASSWORD>
         DB_HOST=localhost
         DB_PORT=5432
 
@@ -69,7 +69,7 @@ A backend app for support Task management of multiple users and their requiremen
     The credentials of this users is:
 
     ```bash
-    username: fvera
+    username: fvera@gmail.com
     password: 6-r6jC&5CRk3S$qVv
     ```
 
