@@ -8,7 +8,7 @@ __license__ = "MIT"
 __version__ = "0.0.1"
 __author__ = "Ariel Saavedra D"
 __email__ = "adosaa@gmail.com"
-__copyright__ = "Copyright 2020, TaskManager."
+__copyright__ = "Copyright 2023, TaskManager."
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
@@ -30,7 +30,6 @@ class AuthenticatedServiceClient:
 
         Constructor of AuthenticatedServiceClient.
         """
-        print("omggg")
         self.payload = payload
         self.is_active = True
         self.is_authenticated = True
@@ -57,6 +56,5 @@ class JWTServiceOnlyAuthentication(JWTAuthentication):
         Returns:
             client (Class): Class with attributes of the logged user.
         """
-        print("wewe")
         client = AuthenticatedServiceClient(payload)
         return client

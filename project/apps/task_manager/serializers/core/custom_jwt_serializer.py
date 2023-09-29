@@ -25,7 +25,7 @@ class JWTSerializer(serializers.Serializer):
     :@returns {None}
     """
 
-    token = serializers.CharField(source="access_token")
+    token = serializers.CharField(source="access")
     user = serializers.SerializerMethodField()
 
     def get_user(self, obj):
@@ -38,7 +38,6 @@ class JWTSerializer(serializers.Serializer):
         :@returns {JWTUserDetailsSerializer}
         """
         rest_auth_serializers = getattr(settings, "REST_AUTH", {})
-
         JWTUserDetailsSerializer = import_string(
             rest_auth_serializers.get(
                 "USER_DETAILS_SERIALIZER",

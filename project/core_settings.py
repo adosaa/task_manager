@@ -73,10 +73,7 @@ task_manager = os.path.join(PROJECT_BASE_DIR, "apps", "task_manager")
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            os.path.join(task_manager, "templates"),
-            os.path.join(task_manager, "templates", "allauth"),
-        ],
+        "DIRS": [os.path.join(task_manager, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -152,6 +149,7 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
     "DEFAULT_METADATA_CLASS": "rest_framework.metadata.SimpleMetadata",
+    "EXCEPTION_HANDLER": "task_manager.errors.core_exception_handler",
 }
 
 
@@ -159,7 +157,7 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": datetime.timedelta(days=1),
     "ALGORITHM": "HS256",
     "SIGNING_KEY": os.getenv("JWT_SECRET_KEY"),
-    "AUTH_HEADER_TYPES": ("TM",),
+    "AUTH_HEADER_TYPES": ("TMCIT",),
     "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
     "USER_AUTHENTICATION_RULE": "rest_framework_simplejwt.authentication.default_user_authentication_rule",
     "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),

@@ -1,7 +1,6 @@
 from django.urls import path, include
-
-# from task_manager.routers.student import urls as example_urls
+from task_manager.routers.task import urls as task_urls
 
 urlpatterns = [
-    # path('example/', include(example_urls)),
+    path("task/", include(task_urls)),
 ]

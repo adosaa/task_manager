@@ -11,7 +11,6 @@ INSTALLED_APPS += [
     "corsheaders",
     "rest_framework_filters",
     "dj_rest_auth",
-    "dj_rest_auth.registration",
     "task_manager",
     "rest_framework.authtoken",
 ]
@@ -24,11 +23,8 @@ REST_AUTH = {
     "LOGOUT_ON_PASSWORD_CHANGE": False,
     "REST_AUTH_TOKEN_MODEL": None,
     "USER_DETAILS_SERIALIZER": "task_manager.serializers.core.UserSerializer",
-    "JWT_SERIALIZER": "task_manager.serializers.core.JWTSerializer",
     "JWT_TOKEN_CLAIMS_SERIALIZER": "task_manager.serializers.core.JWTTokenSerializer",
+    "JWT_SERIALIZER": "task_manager.serializers.core.JWTSerializer",
 }
-
-
-REST_AUTH_SERIALIZERS = {}
 
 AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
