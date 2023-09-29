@@ -1,11 +1,13 @@
 # TaskManager Backend
 
-A backend app that
+A backend app for support Task management of multiple users and their requirements as a hiring test. This proof of concept includes:
 
 * JWT authentication mechanism.
-* Saving/Retrieving student's presence records and is able to generate reports of all student's presence in descending order.
+* CRUD endpoints for Task operations.
 * Documentation (<http://127.0.0.1:8000/docs/>)
 * Coverage 89%
+* [OPTIONAL] serverless deployment in AWS Lambda with Zappa.
+
 
 ## Considerations
 
@@ -39,32 +41,40 @@ A backend app that
 
 1. Copy / clone repo from github.
 
-        git clone git@github.com:adosaa/task_manager_backend.git
+        git clone https://github.com/adosaa/task_manager.git
 
 2. If you already have the repo, pull the latest version
 
-        git checkout master
+        git checkout main
         git pull
 
-3. Create a virtualenv. Note: supporting Pyhton 3.8.
+3. Create a virtualenv. Note: supporting Pyhton 3.11.
 
-        virtualenv -p python3.8 task_manager-env
+        virtualenv -p python3.11 task_manager-env
         source task_manager-env/bin/activate
 
 4. Switch to the project root and install requirements.
 
         pip install -r requirements.txt
 
-5. create in project/secrets folder a .env file with the follow env. variables:
+5. Install Postgresql 15 and create a database with a free-to-choice name, just remember that name to put it as an environment variable in the next section. Just for running purposes, use the Postgres user or whatever user with  "database creator" grants to execute unit tests.
 
-        SECRET_KEY=<secret_key_to_election>
-        DB_NAME=django.db.backends.sqlite3
+6. Create a folder called "secrets" at the "project" folder level and after that, create an "a .env" file with the following environment variables:
+
+        SECRET_KEY=jot!b6p8=do)ad2&2hce94zu*r8y9hqht=@t&*r$qqeubp+%xv
+        JWT_SECRET_KEY=og*wldp6iy(7vy5d5#$h0*+(%=wd&u)8!n9d3k526s-ly_xvn#
+        DB_ENGINE=django.db.backends.postgresql
+        DB_NAME=<DB_NAME>
+        DB_USER=postgres
+        DB_PASSWORD=<DB_NAME>
+        DB_HOST=localhost
+        DB_PORT=5432
 
 6. Migrate Django datamodels
 
         ./manage.py migrate
 
-7. For easy use, we recommend load the initial data with fixtures
+7. For easy use, we recommend load the initial data (test user) with fixtures.
 
         ./manage.py loaddata auth_user_fixture
 
@@ -93,9 +103,9 @@ A backend app that
 
 Once the setup & run step is done, it's recommended:
 
-1. execute POST endpoint <http://127.0.0.1:8000/api/v1/input_file/> with an election file (or pick some of one example in project/apps/task_manager_backend/tests/resources):
+1. execute POST endpoint <http://127.0.0.1:8000/auth/login/> and login with the credentials served in the step number 7 of setup:
 
-![Alt text](project/apps/task_manager_backend/tests/resources/upload_input_file.png?raw=true "upload_file")
+![Alt text](project/apps/task_manager/tests/resources/login.png?raw=true "upload_file")
 
 2. 2. The user can explore for all the rest of the endpoints present in the documentation or in the postman export file, but for getting the exercise result, execute the GET endpoint <http://127.0.0.1:8000/api/v1/report/> as the below image:
 
